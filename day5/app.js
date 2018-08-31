@@ -1,12 +1,14 @@
 var express = require('express');
 var app = express();
 var routes = require("./config/routes");
+var bodyParser = require('body-parser');
 
 /*------- Here we can setting the application--------*/
 app.set("view engine", "ejs");
 
 /*------- set a public folder for static files --------*/
 app.use(express.static(__dirname+"/public"));
+app.use(bodyParser());
 
 /*------- app.use call when any url call --------*/
 app.use(function(req, res, next){

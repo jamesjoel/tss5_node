@@ -4,8 +4,9 @@ var routes = express.Router();
 
 routes.use("/", require("../controller/home"));
 routes.use("/about", require("../controller/about"));
+routes.use("/signup", require("../controller/signup"));
 
 
-routes.all("*", require("../controller/error"));
+routes.use("*", require("../controller/error"));
 
 module.exports=routes;
