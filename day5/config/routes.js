@@ -5,6 +5,7 @@ var routes = express.Router();
 routes.use("/", require("../controller/home"));
 routes.use("/about", require("../controller/about"));
 routes.use("/signup", require("../controller/signup"));
+routes.use("/student", require("../controller/student"));
 
 
 routes.use("*", require("../controller/error"));
