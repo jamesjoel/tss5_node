@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%= title %></title>
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/css/font-awesome.css">
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<script type="text/javascript" src="/js/bootstrap.js"></script>
+	<style type="text/css">
+		media (min-width: 768px)
+		.modal-content {
+		     -webkit-box-shadow: none !important; 
+		     box-shadow: none !important; 
+		     border:none !important;
+		}
+		.modal-content {
+		     border:none !important;
+			background-color: transparent !important;
+			box-shadow: none !important;
+		}
+
+
+
+
+
+	</style>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button class="navbar-toggle" data-toggle="collapse" data-target="#mynav">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">TSS</a>
+		</div>
+		<div id="mynav" class="collapse navbar-collapse">
+			<ul class="navbar-nav nav">
+				<!-- <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Home<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Somthing</a></li>
+						<li><a href="#">Somthing</a></li>
+						<li><a href="#">Somthing</a></li>
+					</ul>
+				</li> -->
+
+				<li><a href="/">Home</a></li>
+				<li><a href="/about">About</a></li>
+				<li><a href="/contact">Contact</a></li>
+				<li><a href="/student">Student</a></li>
+			</ul>
+			<a href="#" class="btn btn-info navbar-btn" data-toggle="modal" data-target="#addModal">Add</a>
+			<ul class="navbar-nav nav navbar-right">
+				<li><a href="#" data-toggle="modal" data-target="#loginModal">Login</a></li>
+				<li><a href="#" data-toggle="modal" data-target="#signupModal" data-backdrop="static" data-keyboard="false">Signup</a></li>
+			</ul>
+			<form class="navbar-form navbar-right">
+				<div class="form-group">
+					<div class="input-group">
+					<input type="text" class="form-control" placeholder="Search...">
+					<div class="input-group-addon">
+					<span class="glyphicon glyphicon-search
+					"></span>
+					</div>
+					</div>
+				</div>
+				
+			</form>
+		</div>
+	</div>
+</nav>	
+<div class="container" style="margin-top: 80px; min-height: 650px; height: auto;">
+	
+
+<%- include(pagename) %>
+
+
+
+
+</div>
+<nav class="navbar navbar-inverse" style="margin-bottom: 0px;">
+	<div class="container">
+		<ul class="navbar-nav nav">
+			<li><a href="#">Home</a></li>
+			<li><a href="#">Home</a></li>
+			<li><a href="#">Home</a></li>
+		</ul>
+		<p class="navbar-text">
+			Copyright by TSS
+		</p>
+	</div>
+</nav>
+
+
+<div class="modal fade" id="loginModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h2>Login</h2>
+			</div>
+			<div class="modal-body">
+			</div>
+			<div class="modal-footer">
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id='signupModal'>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			
+				<div class="row main">
+								<div class="main-login main-center">
+					<a href="#" class="close" data-dismiss="modal">x</a>
+								<h5>Sign up once and watch any of our free demos.</h5>
+									<form class="" method="post" action="/signup">
+										
+										<div class="form-group">
+											<label for="name" class="cols-sm-2 control-label">Your Name</label>
+											<div class="cols-sm-10">
+												<div class="input-group">
+													<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+													<input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name"/>
+												</div>
+											</div>
+										</div>
+
+										<div class="form-group">
+											<label for="email" class="cols-sm-2 control-label">Your Email</label>
+											<div class="cols-sm-10">
+												<div class="input-group">
+													<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+													<input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
+												</div>
+											</div>
+										</div>
+
+										<div class="form-group">
+											<label for="username" class="cols-sm-2 control-label">Username</label>
+											<div class="cols-sm-10">
+												<div class="input-group">
+													<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+													<input type="text" class="form-control" name="username" id="username"  placeholder="Enter your Username"/>
+												</div>
+											</div>
+										</div>
+
+										<div class="form-group">
+											<label for="password" class="cols-sm-2 control-label">Password</label>
+											<div class="cols-sm-10">
+												<div class="input-group">
+													<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+													<input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password"/>
+												</div>
+											</div>
+										</div>
+
+										<div class="form-group">
+											<label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
+											<div class="cols-sm-10">
+												<div class="input-group">
+													<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+													<input type="password" class="form-control" name="confirm" id="confirm"  placeholder="Confirm your Password"/>
+												</div>
+											</div>
+										</div>
+
+										<div class="form-group ">
+											<button type="submit" id="button" class="btn btn-primary btn-lg btn-block login-button">Register</button>
+										</div>
+										
+									</form>
+								</div>
+							</div>
+			
+		</div>
+	</div>
+</div>
+
+
+
+<div class="modal fade" id='addModal'>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			
+			<div class="row main">
+							<div class="main-login main-center">
+				<a href="#" class="close" data-dismiss="modal">x</a>
+				<h5>Add New Student</h5>
+					<form class="" method="post" action="/student">
+						
+						<div class="form-group">
+							<label for="name" class="cols-sm-2 control-label">Student Name</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="name" id="name"  placeholder="Student Name"/>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="name" class="cols-sm-2 control-label">Student Fee</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="fee" id="name"  placeholder="Student Fee"/>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="name" class="cols-sm-2 control-label">Student City</label>
+							<div class="cols-sm-10">
+								<select class="form-control" name="city">
+									<option>Select</option>
+									<option>ujjain</option>
+									<option>indore</option>
+									<option>mumbai</option>
+									<option>pune</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group ">
+							<button type="submit" id="button" class="btn btn-primary btn-lg btn-block login-button">Add</button>
+						</div>
+						
+					</form>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+</body>
+</html>
