@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<table align="center" width="500">
+	<tr>
+		<td>S.No.</td>
+		<td>Name</td>
+		<td>Username</td>
+		<td>Conact</td>
+	</tr>
+	<% data.forEach(function(item, i){ %>
+		<tr>
+			<td><%= i+1 %></td>
+			<td><%= item.name %></td>
+			<td><%= item.username %></td>
+			<td><%= item.contact %></td>
+		</tr>
+
+	<% }) %>
+</table>
+</body>
+</html>
