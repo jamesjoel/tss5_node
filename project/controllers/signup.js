@@ -7,16 +7,32 @@ var user = require("../models/user");
 
 
 routes.get("/", function(req, res){
-	var pageData = { title : "Signup Page", pagename : "signup/index"};
+	var pageData = { title : "Signup Page", pagename : "signup/index", msg : req.flash("msg")};
 	res.render("layout", pageData);
 	// res.render("home/index");
 });
 
 routes.post("/", function(req, res){
 	var obj = req.body;
-	user.insert(obj, function(err, result){
-		res.redirect("/login");
+	var where = { username : obj.username };
+	user.find(where, function(err, result){
+		console.log(result.length);
+		if(result.length==0)
+		{
+			user.insert(obj, function(err, result){
+				
+				req.flash("msg", "Successful Signup, Pls Login Here...");
+				res.redirect("/login");
+			});
+		}
+		else
+		{
+			req.flash("msg", "This username Already Exists");
+			res.redirect("/signup");
+		}
+
 	});
+
 });
 
 module.exports=routes;

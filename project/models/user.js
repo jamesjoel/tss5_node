@@ -8,9 +8,9 @@ module.exports.insert=function(obj, cb){
 	});
 	
 }
-module.exports.find=function(cb){
+module.exports.find=function(obj, cb){
 	con(function(err, client){
 		var db = client.db(config.database);
-		db.collection("user").find().toArray(cb);
+		db.collection("user").find(obj).toArray(cb);
 	});
 }
