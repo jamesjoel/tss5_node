@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var flash = require('express-flash');
+var nocache = require('nocache');
 
 
 
@@ -17,6 +18,7 @@ app.use(bodyParser());
 app.use(cookieParser());
 app.use(session({ secret : "TSS" }));
 app.use(flash());
+app.use(nocache());
 
 
 app.use(function(req, res, next){

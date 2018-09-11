@@ -59,7 +59,7 @@
 							</div>
 							<div class="top_bar_user">
 								<div class="user_icon"><img src="/images/user.svg" alt=""></div>
-								<% if(session.full_name)
+								<% if(session.is_user_logged_in)
 								{ %>
 									<div><a href="/dashboard">Dashboard</a></div>
 									<div><a href="/logout">Logout</a></div>

@@ -15,9 +15,16 @@ routes.get("/logout", function(req, res){
 	res.redirect("/login");
 });
 
+routes.use("/admin", require("../controllers/admin/index"));
+
+
+
+
+
+
 function userBackdoor(req, res, next)
 {
-	if(! req.session.full_name)
+	if(! req.session.is_user_logged_in)
 	{
 		res.redirect("/login");
 		return;
