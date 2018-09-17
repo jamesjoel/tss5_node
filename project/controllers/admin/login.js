@@ -16,7 +16,7 @@ routes.post("/", function(req, res){
 		if(result.length==0)
 		{
 			req.flash("msg", "This username and password not matched");
-			res.redirect("/admin");
+			res.redirect("/admin/login");
 		}
 		else
 		{
@@ -28,7 +28,7 @@ routes.post("/", function(req, res){
 			else
 			{
 				req.flash("msg", "This password not matched");
-				res.redirect("/admin");		
+				res.redirect("/admin/login");		
 			}
 		}
 	});

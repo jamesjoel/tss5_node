@@ -9,6 +9,7 @@ var nocache = require('nocache');
 
 
 var routes = require("./config/routes");
+var category = require("./models/category");
 
 
 app.set("view engine", "ejs");
@@ -22,8 +23,12 @@ app.use(nocache());
 
 
 app.use(function(req, res, next){
+	category.find({}, function(err, result){
 	res.locals.session = req.session;
+	res.locals.category=result;
 	next();
+
+	});
 });
 
 
