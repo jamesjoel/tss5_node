@@ -4,7 +4,8 @@ var routes = express.Router();
 
 routes.use("/login", isLoggedIn, require("./login"));
 routes.use("/dashboard", adminBackdoor, require("./dashboard"));
-routes.use("/add_category", adminBackdoor, require("./category"));
+routes.use("/category", adminBackdoor, require("./category"));
+routes.use("/product", adminBackdoor, require("./product"));
 
 
 
