@@ -1,9 +1,15 @@
 var express = require('express');
 var routes = express.Router();
+var product = require("../models/product");
 
 routes.get("/", function(req, res){
-	var pageData = { title : "Home Page", pagename : "home/index"};
-	res.render("layout", pageData);
+
+	product.find({}, function(err, result){
+
+		// var pageData = { title : "Home Page", pagename : "home/index", result : result};
+		// res.render("layout", pageData);
+		rse.send(result);
+	})
 	// res.render("home/index");
 });
 
