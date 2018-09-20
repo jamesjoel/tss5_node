@@ -1,10 +1,20 @@
 <h2>View All Product</h2>
+<!-- <a href="/admin/product/demo?a=rohit&b=25&c=indore">Demo</a> -->
+
+<!-- <form method="get" action="/admin/product/demo">
+	First <input type="Text" name="x" />
+	Second <input type="Text" name="y" />
+	<input type="submit" />
+</form> -->
+
+
 <table class="table table-hover table-borderd table-striped">
 	<tr>
 		<th>S.No.</th>
 		<th>Name</th>
 		<th>Price</th>
 		<th>Category</th>
+		<th>Image</th>
 		<th>Edit</th>
 		<th>Delete</th>
 	</tr>
@@ -14,9 +24,42 @@
 			<td><%= item.name %></td>
 			<td><%= item.price %></td>
 			<td><%= item.category %></td>
+			<td><img src="/product_images/<%= item.image %>" height="50" width="50">
 			<td><a href="#" class="btn btn-info">Edit</a></td>
-			<td><a href="#" class="btn btn-danger">Delete</a></td>
+			<td><a id="a_<%= i %>" href="/admin/product/delete/<%= item._id %>/<%= item.image %>" style="display: none"></a>
+			<button class="btn btn-danger" data-target="#delModal" data-toggle="modal" onclick="setId('a_<%= i %>')">delete</button></td>
 		</tr>
 	<% }) %>
 
 </table>
+
+<div class="modal fade" id="delModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h2>Delete Product</h2>
+			</div>
+			<div class="modal-body">
+				<p>Are You sure want to delete this !</p>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-danger" id="del_btn" data-dismiss="modal" onclick="callHref()">Delete</button>
+				<button class="btn btn-default" data-dismiss="modal">Cancle</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	var id = "";
+	function setId(x)
+	{
+		// alert(x);
+		id = x;
+	}
+	function callHref()
+	{
+		// alert(id);
+		document.getElementById(id).click();
+	}
+</script>
+

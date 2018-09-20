@@ -6,9 +6,9 @@ routes.get("/", function(req, res){
 
 	product.find({}, function(err, result){
 
-		// var pageData = { title : "Home Page", pagename : "home/index", result : result};
-		// res.render("layout", pageData);
-		rse.send(result);
+		var pageData = { title : "Home Page", pagename : "home/index", result : result};
+		res.render("layout", pageData);
+		// res.send(result);
 	})
 	// res.render("home/index");
 });

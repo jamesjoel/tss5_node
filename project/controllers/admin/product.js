@@ -4,6 +4,8 @@ var product = require("../../models/product");
 var category = require("../../models/category");
 var changename = require("../../helpers/changename");
 var path = require("path"); // for get root path and this is default module
+var mongo = require("mongodb");
+var fs = require('fs');
 
 routes.get("/", function(req, res){
 	product.find({}, function(err, result){
@@ -51,7 +53,31 @@ routes.post("/add", function(req, res){
 
 });
 
+routes.get("/demo", function(req, res){
+	// console.log(req.params);
+	console.log(req.query);
+	return;
+});
 
+routes.get("/delete/:id/:name", function(req, res){
+	// console.log(req.params.id);
+	var id = req.params.id;
+	var name = req.params.name;
+	var image_path = path.resolve()+"/public/product_images/"+name;
+	fs.unlink(image_path, function(err){
+		if(err){
+			console.log("delete error", err);
+			return;
+		}
+		product.remove({ _id : new mongo.ObjectId(id) }, function(err, result){
+			console.log(result);
+			res.redirect("/admin/product");
+		});
+		
+	})
+
+
+});
 
 
 

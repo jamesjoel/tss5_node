@@ -14,3 +14,9 @@ module.exports.find=function(obj, cb){
 		db.collection("product").find(obj).toArray(cb);
 	});
 }
+module.exports.remove=function(obj, cb){
+	con(function(err, client){
+		var db = client.db(config.database);
+		db.collection("product").remove(obj, cb);
+	});
+}
