@@ -56,17 +56,33 @@
 <div class="main-div">
     <div class="panel">
    </div>
-    <form id="Login" action="/admin/category/add" method="post">
+
+          <% if((typeof(result) === 'undefined')) { 
+            var result = { name : "", _id : ""};
+            var label = "Add New Category";
+            var btn = "Add";
+            var url = "/admin/category/add"
+       }else{
+       var label = "Edit Category"
+       var btn = "Update";
+       var url = "/admin/category/update"
+
+     }
+
+
+        %>
+    <form id="Login" action="<%= url %>" method="post">
+        <input type="hidden" name="id" value="<%= result._id %>" /> 
 
         <div class="form-group">
+          <label><%= label %></label>
 
-        	<label>New Category</label>
-            <input type="text" class="form-control" name="name" placeholder="Category Name">
+            <input type="text" class="form-control" name="name" value="<%= result.name %>" placeholder="Category Name">
 
         </div>
 
         
-        <button type="submit" class="btn btn-primary">Add</button>
+        <button type="submit" class="btn btn-primary"><%= btn %></button>
 
     </form>
     <p><%= msg %></p>

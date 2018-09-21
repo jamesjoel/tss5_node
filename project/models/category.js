@@ -14,3 +14,10 @@ module.exports.find=function(obj, cb){
 		db.collection("category").find(obj).toArray(cb);
 	});
 }
+
+module.exports.update=function(where, obj, cb){
+	con(function(err, client){
+		var db = client.db(config.database);
+		db.collection("category").update(where, obj, cb);
+	});
+}

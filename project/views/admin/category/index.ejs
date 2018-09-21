@@ -3,11 +3,15 @@
 	<tr>
 		<th>S.No.</th>
 		<th>Category Name</th>
+		<th>Edit</th>
+		<th>Delete</th>
 	</tr>
 	<% result.forEach(function(item, i){ %>
 		<tr>
 			<td><%= i+1 %></td>
 			<td><%= item.name %></td>
+			<td><a href="/admin/category/edit/<%= item._id %>" class="btn btn-info">Edit</a></td>
+			<td><a href="#" class="btn btn-danger">Delete</a></td>
 		</tr>
 	<% }) %>
 </table>
