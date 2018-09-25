@@ -10,6 +10,7 @@ routes.use("/show", require("../controllers/show"));
 
 
 routes.use("/dashboard",userBackdoor, require("../controllers/dashboard"));
+routes.use("/account",userBackdoor, require("../controllers/account"));
 routes.get("/logout", function(req, res){
 	req.session.destroy();
 	res.redirect("/login");

@@ -33,8 +33,8 @@ app.use(function(req, res, next){
 	});
 });
 
-
 app.use(routes);
+
 
 
 app.listen(3000, function(){

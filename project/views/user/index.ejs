@@ -1,0 +1,39 @@
+<div class="jumbotron">
+	<h1>Welcome user <%= session.full_name %></h1>
+	<Hr />
+	<h3>User Profile</h3>
+	<table class="table table-hover table-bordered">
+
+		<tr>
+			<td>Full Name</td>
+			<td><%= result.name %></td>
+		</tr>
+		<tr>
+			<td>Profile Pic</td>
+			<td><img src="<% if(result.image) { %><%= 'user_images/'+result.image %><% }else{ %> /images/avatar.png <% } %>" height="100" width="100">
+				<br />
+				<a href="/account/changeimage">Change</a>
+			</td>
+		<tr>
+			<td>Username</td>
+			<td><%= result.username %></td>
+		</tr>
+		<tr>
+			<td>Gender</td>
+			<td><%= result.gender %></td>
+		</tr>
+		<tr>
+			<td>City</td>
+			<td><%= result.city %></td>
+		</tr>
+		<tr>
+			<td>Address</td>
+			<td><%= result.address %></td>
+		</tr>
+		<tr>
+			<td>Contact</td>
+			<td><%= result.contact %></td>
+		</tr>
+	</table>
+	<a href="/account/edit" class="btn btn-info">Edit</a>
+</div>

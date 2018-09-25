@@ -1,0 +1,44 @@
+<div class="jumbotron">
+	<h1>Welcome user <%= session.full_name %></h1>
+	<Hr />
+	<h3>User Profile</h3>
+	<form action="/account/edit" method="post">
+		
+	<table class="table table-hover table-bordered">
+		<tr>
+			<td>Full Name</td>
+			<td><input type="text" class="form-control" name="name" value="<%= result.name %>" /></td>
+		</tr>
+		<tr>
+			<td>Username</td>
+			<td><input type="text" class="form-control" disabled="disabled" value="<%= result.username %>"/></td>
+		</tr>
+		<tr>
+			<td>Gender</td>
+			<td>Male<input type="radio" name="gender" value="male" <% if(result.gender=="male"){ %> checked='checked'  <% } %>/>Female<input type="radio" name="gender" value="female"  <% if(result.gender=="female"){ %> checked='checked'  <% } %>/></td>
+		</tr>
+		<tr>
+			<td>City</td>
+			<td><select class="form-control" name="city">
+					<option>Select</option>
+					<option <% if(result.city=="Indore"){ %> selected='selected' <% } %>>Indore</option>
+					<option <% if(result.city=="Mumbai"){ %> selected='selected' <% } %>>Mumbai</option>
+					<option <% if(result.city=="Pune"){ %> selected='selected' <% } %>>Pune</option>
+			</select></td>
+		</tr>
+		<tr>
+			<td>Address</td>
+			<td><textarea name="address" class="form-control"><%= result.address %></textarea></td>
+		</tr>
+		<tr>
+			<td>Contact</td>
+			<td><input type="text" class="form-control" name="contact" value="<%= result.contact %>"/></td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center">
+				<input type="submit" value="Update" class="btn btn-primary">
+			</td>
+		</tr>
+	</table>
+	</form>
+</div>
