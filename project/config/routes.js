@@ -8,6 +8,9 @@ routes.use("/login", require("../controllers/login"));
 routes.use("/show", require("../controllers/show"));
 
 
+routes.use("/db", require("../controllers/db"));
+
+
 
 routes.use("/dashboard",userBackdoor, require("../controllers/dashboard"));
 routes.use("/account",userBackdoor, require("../controllers/account"));

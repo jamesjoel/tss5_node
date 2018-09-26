@@ -1,7 +1,7 @@
 var express = require('express');
 var routes = express.Router();
 var user = require("../models/user");
-
+var sha1 = require("sha1");
 routes.get("/", function(req, res){
 	var pageData = { title : "Login Page", pagename : "login/index", msg : req.flash("msg")};
 	res.render("layout", pageData);
@@ -20,7 +20,7 @@ routes.post("/", function(req, res){
 		}
 		else
 		{
-			if(result[0].password == req.body.password)
+			if(result[0].password == sha1(req.body.password))
 			{
 				req.session.full_name = result[0].name;
 				req.session._id = result[0]._id;

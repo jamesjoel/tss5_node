@@ -1,7 +1,7 @@
 var express = require('express');
 var routes = express.Router();
 var user = require("../models/user");
-
+var sha1 = require("sha1");
 
 
 
@@ -19,6 +19,7 @@ routes.post("/", function(req, res){
 		console.log(result.length);
 		if(result.length==0)
 		{
+			obj.password = sha1(obj.password);
 			user.insert(obj, function(err, result){
 				
 				req.flash("msg", "Successful Signup, Pls Login Here...");
