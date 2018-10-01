@@ -62,6 +62,14 @@ routes.post("/changeimage", function(req, res){
 	});
 });
 
+routes.post("/savetheme", function(req, res){
+	req.session.color = req.body.color;
+	console.log(req.body);
+	var id = req.session._id;
+	user.update({ _id : mongo.ObjectId(id) }, { $set : req.body}, function(err, result){
+		res.redirect("/account");
+	});
+});
 
 
 module.exports=routes;

@@ -30,7 +30,7 @@
 
 		<!-- Top Bar -->
 
-		<div class="top_bar">
+		<div class="top_bar" id="myheader" <% if(session.is_user_logged_in)	{%> style='background-color:<%= session.color %> !important' <%} %>>
 			<div class="container">
 				<div class="row">
 					<div class="col d-flex flex-row">
@@ -651,6 +651,16 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="/plugins/easing/easing.js"></script>
 <script src="/js/custom.js"></script>
 <script src="/js/shop_custom.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".box").click(function(){
+			var color = $(this).attr('title');
+			$("#myheader").css({"background-color": color});
+			$("#mycolor").val(color);
+		});
+	});
+</script>
+
 
 </body>
 

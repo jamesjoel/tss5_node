@@ -14,6 +14,7 @@ routes.get("/", function(req, res){
 
 routes.post("/", function(req, res){
 	var obj = req.body;
+	obj.color = "#FAFAFA";
 	var where = { username : obj.username };
 	user.find(where, function(err, result){
 		console.log(result.length);

@@ -24,6 +24,7 @@ routes.post("/", function(req, res){
 			{
 				req.session.full_name = result[0].name;
 				req.session._id = result[0]._id;
+				req.session.color = result[0].color;
 				req.session.is_user_logged_in=true;
 				res.redirect("/dashboard");
 			}

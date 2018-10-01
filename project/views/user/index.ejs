@@ -36,4 +36,40 @@
 		</tr>
 	</table>
 	<a href="/account/edit" class="btn btn-info">Edit</a>
+	<Hr />
+	<div class="container">
+		<div class="row">
+		<form action="/account/savetheme" method="post">
+			
+		<h2>Themes</h2>
+		<div title="red" id="box1" class="box"></div>
+		<div title="green" id="box2" class="box"></div>
+		<div title="blue" id="box3" class="box"></div>
+		<div title="#d33da9" id="box4" class="box"></div>
+		<br />
+		<input id="mycolor" type="hidden" name="color" value="">
+		<input type="submit" value="Save Theme">
+		</div>
+		</form>
+	</div>
 </div>
+<style type="text/css">
+	.box{
+		height: 100px;
+		width: 100px;
+		float: left;
+		margin: 10px;
+	}
+	#box1{
+		background-color: red;
+	}
+	#box2{
+		background-color: green;
+	}
+	#box3{
+		background-color: blue;
+	}
+	#box4{
+		background-color: #d33da9;
+	}
+</style>
