@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<br />
+	<br />
+	<br />
+	<div class="container">
+		<form action="/search" method="get">
+			
+		<input type="text" name="city" placeholder="Search" class="form-control">
+		<input type="submit" value="Search" class="btn btn-success">
+		</form>
+
+		<hr />
+		<% if(list != ""){ %>
+			<table class="table table-bordered table-hover">
+				<tr>
+					<th>S.No.</th>
+					<th>Hotel Name</th>
+					<th>City</th>
+				</tr>
+				<% list.forEach(function(item, i){ %>
+				<tr>
+					<td><%= i+1 %></td>
+					<td><%= item.name %></td>
+					<td><%= item.city %></td>
+			<% }) %>
+			</table>
+	<% } %>
+	</div>
+</body>
+</html>
