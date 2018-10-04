@@ -27,7 +27,7 @@ app.get("/", function(req, res){
 
 app.get('/getdata', function(req, res){
 	var city = req.query.city;
-	http.get("http://localhost:3000/search?apikey=124578&city="+city, function(res){
+	http.get("http://localhost:3000/search?city="+city, function(res){
 		var data = "";
 		res.on("data", function(x){
 			data += x;

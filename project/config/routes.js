@@ -6,6 +6,7 @@ routes.use("/", require("../controllers/home"));
 routes.use("/signup", require("../controllers/signup"));
 routes.use("/login", require("../controllers/login"));
 routes.use("/show", require("../controllers/show"));
+routes.use("/cart", require("../controllers/cart"));
 
 
 routes.use("/db", require("../controllers/db"));

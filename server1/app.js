@@ -10,13 +10,13 @@ app.get("/", function(req, res){
 	res.render("home", { list : ""});
 });
 app.get("/search", function(req, res){
-	req.host();
+	// req.host();
 	var city = req.query.city;
 	MongoClient.connect(url, function(err, client){
 		var db = client.db("tss5");
 		db.collection('hotels').find( { city : city }).toArray(function(err, result){
 			console.log(result);
-			//res.render("home", { list : result });
+			// res.render("home", { list : result });
 			res.send(result);
 		});
 	});

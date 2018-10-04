@@ -1,8 +1,5 @@
 <style type="text/css">
 	.product_item{
-		position: static;
-		    left: 0px;
-		    top: 0px;
 		    float: left;
 
 	}
@@ -100,7 +97,7 @@
 									<div class="product_price">$<%= item.price %><span>$<%= item.price %></span></div>
 									<div class="product_name"><div><a href="#" tabindex="0"><%= item.name %></a></div></div>
 								</div>
-								<div class="product_fav"><i class="fas fa-heart"></i></div>
+								<a href="/cart/add/<%= item._id %>"><div class="product_fav"><i class="fas fa-heart"></i></div></a>
 								<ul class="product_marks">
 									<li class="product_mark product_discount">-<%= item.discount %>%</li>
 									<li class="product_mark product_new">new</li>

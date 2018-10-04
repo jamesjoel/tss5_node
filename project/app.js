@@ -28,6 +28,16 @@ app.use(function(req, res, next){
 	category.find({}, function(err, result){
 	res.locals.session = req.session;
 	res.locals.category=result;
+
+	console.log("-------------------", req.cookies);
+	var total = 0;
+	if(req.cookies.pid)
+	{
+		var arr = req.cookies.pid.split("#");
+		total = arr.length;
+	}
+	res.locals.total=total;
+
 	next();
 
 	});
