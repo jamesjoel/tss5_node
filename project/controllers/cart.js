@@ -1,6 +1,8 @@
 var express = require('express');
 var routes = express.Router();
 var user = require("../models/user");
+var mongo = require("mongodb");
+var product = require("../models/product");
 
 routes.get("/add/:id", function(req, res){
 	var id = req.params.id;
@@ -20,7 +22,27 @@ routes.get("/add/:id", function(req, res){
 	res.redirect("/");
 });
 
+routes.get("/mycart", function(req, res){
+	var pids = req.cookies.pid;
+	var arr = pids.split("#");
+	var newarr = [];
+	for(var i=0; i < arr.length; i++)
+	{
+		var obj = { _id : mongo.ObjectId(arr[i])};
+		newarr.push(obj);
+	}
+	
+	product.find({ $or : newarr }, function(err, result){
 
+		var pageData = { title : "My Cart Page", pagename : "cart/index", result : result};
+		res.render("layout", pageData);
+	})
+
+});
+routes.get("/clear", function(req, res){
+	res.clearCookie("pid");
+	res.redirect("/");
+});
 
 
 module.exports=routes;

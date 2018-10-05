@@ -29,7 +29,7 @@ app.use(function(req, res, next){
 	res.locals.session = req.session;
 	res.locals.category=result;
 
-	console.log("-------------------", req.cookies);
+	// console.log("-------------------", req.cookies);
 	var total = 0;
 	if(req.cookies.pid)
 	{
