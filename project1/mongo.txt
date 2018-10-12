@@ -1,0 +1,112 @@
+Operators
+
+1. Comparession Ope
+	a. $eq
+	b. $gt
+	c. $gte	
+	d. $lt
+	e. $lte
+	f. $nin
+	g. $ne
+
+Exp. ------
+	db.colleciton("").find({ age : {$gte : 25 }}).toArray(function())
+
+-----------------------------------------------------
+
+
+
+2. Logical Ope
+	a. $and
+	b. $or  
+	c. $nor
+	d. $not
+
+Exp. ------
+	db.colleciton("").find({ $and : [{ age : {$lte : 25}}, { city : {$nin : ["ujjain", "bhopal"]}}]}).toArray(function())
+
+--------------------------------------------
+3. Element Que Ope
+
+	a. $type
+	b. $exists
+
+Exp. ------
+	db.colleciton("").find({ $and : [{ fee : {$type : 6}}, { city : {$exists : true}}]})
+--------------------------------------------
+4. Evele. Ope
+	a. $mod
+	b. $text
+	c. $where
+	d. $regex
+
+Exp. ------
+	db.colleciton("").find({ address : { $regx : /^palaysia$/}})
+
+--------------------------------------------
+
+5. Array Que Ope
+	a. $all
+	b. $size
+
+Exp. ------
+	db.colleciton("").find({ color : {$all : ["green", "blue"]}})
+
+	db.colleciton("").find({ $and : [{ color : { $all : ["red", "green"]}}, { color : { $size : 4}}]})
+	
+
+--------------------------------------------
+
+
+
++++++++++++++++++++++++++ Collections Methods/Function ++++++++++++++++
+
+1. db.collection.aggregate()
+2. db.collection.count()
+		db.collection("user").count(function())
+3. db.collection.dataSize() // kb
+4. db.collection.deleteOne() 
+5. db.collection.distinct()
+		db.collection("user").distinct({ city : 1})
+6. db.collection.drop()
+7. db.collection.explain()
+8. db.collection.find()
+9. db.collection.remove()
+10. db.collection.removeOne()
+10. db.collection.update()
+10. db.collection.updateMany()
+11. db.collection("user").renameCollection("student")
+
+
+
++++++++++++++++++++++++++ Cursor Methods/Function ++++++++++++++++
+
+1. db.collection.find({ city : "ujjain"}).count(function())
+2. db.collection.find().forEach(function(item){
+		
+	})
+3. db.collection.find().limit(25)
+4. db.collection.find().skip(10).limit(15)
+ // SELECT * FROM user LIMIT 15
+5. db.collection.find().skip(10).limit(15).sort({city : true}) 
+
++++++++++++++++++++++++++++++++++Update Operator+++++++++++++++++
+
+1. $inc
+	db.collection().updateMany({ fee : { $lte : 2500 }}, { $set : { fee : { $inc : 1000 } }, function())
+
+2. $min
+	db.collection().updateMany({}, {$set : { fee : { $min : 5000 }}})
+3. $max
+	db.collection().updateMany({}, {$set : { fee : { $max : 5000 }}})
+4. $rename
+	db.collection().updateMany({}, {$rename : {"city" : "cities"}})
+5. $unset
+	db.collection().updateMany({}, {$unset : {"city" : ""}})
+6. $push
+	db.collection().updateMany({}, {$push : { color : "red"}})
+7. $sort
+	db.collection().updateMany({}, {$sort : { color : true}})
+
+
+

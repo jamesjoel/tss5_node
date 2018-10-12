@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<table align="center" width="500">
+	<tr>
+		<td>S.No.</td>
+		<td>Name</td>
+		<td>Student</td>
+	</tr>
+	<% result.forEach(function(item, i){ %>
+		<tr>
+			<td><%= i+1 %></td>
+			<td><%= item.city %></td>
+			<td><ol><% item.stuData.forEach(function(stu, j){ %>
+					<li><%= stu.name %></li>
+			<% }) %></ol></td>
+		</tr>
+
+	<% }) %>
+</table>
+</body>
+</html>

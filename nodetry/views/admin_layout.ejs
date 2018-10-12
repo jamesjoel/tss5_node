@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%= title %></title>
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="/js/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<nav class="navbar navbar-inverse">
+	  <div class="container">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span> 
+	      </button>
+	      <a class="navbar-brand" href="#">Admin</a>
+	    </div>
+	    <% if(session.is_admin_logged_in){ %>
+
+		    <div class="collapse navbar-collapse" id="myNavbar">
+	      <ul class="nav navbar-nav">
+	        <li><a href="/admin/dashboard">Dashboard</a></li>
+	        <li><a href="/admin/product/add">Add Product</a></li>
+	        <li><a href="/admin/product">View Product</a></li> 
+	        <li><a href="/admin/category/add">Add Category</a></li> 
+	        <li><a href="/admin/category">View Category</a></li> 
+	        <li><a href="/admin/view_user">View Users</a></li> 
+	      </ul>
+	      <ul class="nav navbar-nav navbar-right">
+	        <li><a href="/admin/logout">Logout</a></li>
+	      </ul>
+	    </div>
+	    <% } %>
+	</nav>
+
+<div class="container" style="min-height: 650px;
+height: auto;">
+<%- include(pagename) %>
+</div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript" src="socket.io/socket.io.js"></script>
+
+	<script type="text/javascript">
+		var socket = io();
+		socket.on("onlineUser", function(data){
+			var x = "";
+			data.forEach(function(item){
+				x += "<li><a href='#'>"+item+"</a></li>";
+			});
+			$("#o_user").html(x);
+		});
+
+	</script>
+
+
+</head>
+<body>
+<div class="container">
+	<br />
+	<br />
+	<h1>Wellcome to Chat Box</h1>
+	<div class="col-md-3">
+		<h3>Online User</h3>
+		<ul id="o_user" class="list-group">
+			
+		</ul>
+
+	</div>
+	<div class="col-md-8">
+		<h3>Chatting</h3>
+		<div class="well" style="background-color: gray; height: 300px; overflow-y: scroll;">
+		</div>
+		<input type="text" class="form-control" placeholder="Your Message">
+		<br />
+		<br />
+		<button class="btn btn-success">Send</button>
+	</div>
+</div>
+</body>
+</html>

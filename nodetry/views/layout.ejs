@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%= title %></title>
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="/js/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<nav class="navbar navbar-inverse">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span> 
+	      </button>
+	      <a class="navbar-brand" href="#">WebSiteName</a>
+	    </div>
+	    <div class="collapse navbar-collapse" id="myNavbar">
+	      <ul class="nav navbar-nav">
+	        <li class="active"><a href="/">Home</a></li>
+	        <li><a href="/about">About</a></li>
+	        <li><a href="/help">Help</a></li> 
+			 <li><a href="/show">Show</a></li> 
+	         
+	      </ul>
+		  <% if(session.is_user_logged_in)
+								{ %>
+									<ul class="nav navbar-nav navbar-right">
+										<li><a href="/dashboard"><span class="glyphicon glyphicon-user"></span> Dashbaord
+										<li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+								  </ul>
+								<% 
+								}else{%>
+									<ul class="nav navbar-nav navbar-right">
+	        <li><a href="" data-target="#signupModal" data-toggle="modal"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+	        <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+	      </ul>
+								
+	<% } %>
+	      
+	    </div>
+	  </div>
+	</nav>
+<div class="container" style="min-height: 650px; height: auto;">
+	<!-- <img src="/images/1.jpeg" /> -->
+
+<%- include(pagename) %>
+
+
+</div>
+
+
+<footer class="page-footer font-small blue">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2018 Copyright:
+    <a href="https://mdbootstrap.com/bootstrap-tutorial/"> MDBootstrap.com</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+
+<div class="modal fade" id="signupModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h2>User Signup</h2>
+			</div>
+			<div class="modal-body">
+				<form action="/signup" method="post">
+					<div class="form-group">
+						<label>Full Name</label>
+						<input type="text" placeholder="Full NAme" class="form-control" name="full_name">
+					</div>
+					<div class="form-group">
+						<label>Username</label>
+						<input type="text" placeholder="Username" class="form-control" name="username">
+					</div>
+					<div class="form-group">
+						<label>Password</label>
+						<input type="password" placeholder="Password" class="form-control" name="password">
+					</div>
+					<div class="form-group">
+						<label>Address</label>
+						<textarea class="form-control" name="add"></textarea>
+					</div>
+
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-danger" data-dismiss="modal">Close</button>
+				<button class="btn btn-success" type="submit">Submit</button>
+			</div>
+				</form>
+		</div>
+	</div>
+</div>
+
+
+
+</body>
+</html>

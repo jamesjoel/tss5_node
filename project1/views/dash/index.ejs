@@ -1,0 +1,29 @@
+<script type="text/javascript" src="socket.io/socket.io.js"></script>
+<script type="text/javascript">
+	var socket = io();
+
+	socket.on("onlineUser", function(users){
+		console.log(users);
+		var x = "";
+		users.forEach(function(item){
+			x+="<li><a onclick='start_chat()' href='#'>"+item.name+"</a></li>";
+		});
+		$("#online_user_show").html(x);
+	});
+
+	function open_chat_box()
+	{
+		
+	}
+
+
+</script>
+<div id="online_user">
+	<h3>Online User</h3>
+	<ul id="online_user_show">
+		
+	</ul>
+</div>
+<div class="jumbotron">
+	<h1>Welcome user <%= session.full_name %></h1>
+</div>
