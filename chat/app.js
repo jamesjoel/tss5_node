@@ -29,7 +29,11 @@ io.on("connection", function(socket){
 
 		socket.broadcast.to(to).emit("chat", sendobj);
 	});
-
+	socket.on("disconnect", function(){
+		delete obj[socket.id];
+		io.emit("onlineUser", obj);
+		console.log(socket.id);
+	});
 
 	// sending all client
 });
