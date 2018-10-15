@@ -21,3 +21,10 @@ module.exports.update=function(where, obj, cb){
 		db.collection("category").update(where, obj, cb);
 	});
 }
+
+module.exports.delete=function(obj, cb){
+	con(function(err, client){
+		var db = client.db(config.database);
+		db.collection("category").remove(obj, cb);
+	});
+}

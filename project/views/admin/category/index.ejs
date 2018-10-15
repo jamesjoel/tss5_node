@@ -11,7 +11,7 @@
 			<td><%= i+1 %></td>
 			<td><%= item.name %></td>
 			<td><a href="/admin/category/edit/<%= item._id %>" class="btn btn-info">Edit</a></td>
-			<td><a href="#" class="btn btn-danger">Delete</a></td>
+			<td><a href="/admin/category/delete/<%= item._id %>" class="btn btn-danger">Delete</a></td>
 		</tr>
 	<% }) %>
 </table>

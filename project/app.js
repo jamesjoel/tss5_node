@@ -1,5 +1,12 @@
 var express = require('express');
 var app = express();
+var http = require("http").Server(app);
+
+var io = require("socket.io")(http);
+
+
+
+
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
@@ -22,13 +29,11 @@ app.use(session({ secret : "TSS" }));
 app.use(flash());
 app.use(nocache());
 app.use(upload());
-
-
 app.use(function(req, res, next){
 	category.find({}, function(err, result){
 	res.locals.session = req.session;
 	res.locals.category=result;
-
+	res.set.io = io;
 	// console.log("-------------------", req.cookies);
 	var total = 0;
 	if(req.cookies.pid)
@@ -47,6 +52,6 @@ app.use(routes);
 
 
 
-app.listen(3000, function(){
+http.listen(3000, function(){
 	console.log("Server Running");
 });

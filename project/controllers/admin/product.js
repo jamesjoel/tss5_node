@@ -28,6 +28,7 @@ routes.get("/add", function(req, res){
 
 routes.post("/add", function(req, res){
 	// console.log(req.body);
+	var io = res.set.io;
 	var file = req.files.image;
 	console.log(file.name);
 	var newname = changename(file.name);
@@ -41,6 +42,8 @@ routes.post("/add", function(req, res){
 		req.body.image = newname;
 		product.insert(req.body, function(err, result){
 			console.log(result);
+			io.emit("product", result.ops[0]);
+
 			req.flash("msg", "Product Added !");
 			res.redirect("/admin/product/add");
 		});

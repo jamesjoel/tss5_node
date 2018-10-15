@@ -22,8 +22,19 @@ routes.get("/add", function(req, res){
 
 routes.post("/add", function(req, res){
 	// console.log(req.body);
+	var io = res.set.io;
+
+
+
+
+
+
 	category.insert(req.body, function(err, result){
-		console.log(result);
+		console.log(result.ops[0]);
+
+		io.emit("category", result.ops[0]);
+
+
 		req.flash("msg", "Category Added !");
 		res.redirect("/admin/category/add");
 	});
@@ -50,6 +61,13 @@ routes.get("/edit/:id", function(req, res){
 	});
 });
 
+
+routes.get("/delete/:id", function(req, res){
+	var id = req.params.id;
+	category.delete({ _id : mongo.ObjectId(id)}, function(err, result){
+		res.redirect("/admin/category");	
+	});
+});
 
 
 

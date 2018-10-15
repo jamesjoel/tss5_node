@@ -2,6 +2,23 @@
 <html lang="en">
 <head>
 <title><%= title %></title>
+<script type="text/javascript" src="socket.io/socket.io.js"></script>
+<script type="text/javascript">
+	var socket = io();
+
+	socket.on("category", function(data){
+		console.log(data);
+		var x = '<li><a href="#">'+data.name+'<i class="fas fa-chevron-right ml-auto"></i></a></li>';
+		$("#cat_menu").append(x);
+	});
+
+
+	socket.on("product", function(data){
+		// console.log(data);
+		var x = '<div class="product_item discount"><div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="/product_images/'+data.image+'" alt=""></div><div class="product_content"><div class="product_price">$'+data.price+'<span>$'+data.price+'</span></div><div class="product_name"><div><a href="#" tabindex="0">'+data.name+'</a></div></div></div>								<a href="/cart/add/'+data._id+'"><div class="product_fav"><i class="fas fa-heart"></i></div></a><ul class="product_marks"><li class="product_mark product_discount">-'+data.discount+'%</li>									<li class="product_mark product_new">new</li>								</ul></div>';
+		$("#product_grid").prepend(x);
+	})
+</script>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="OneTech shop project">
@@ -168,7 +185,7 @@
 									<div class="cat_menu_text">categories</div>
 								</div>
 
-								<ul class="cat_menu">
+								<ul class="cat_menu" id="cat_menu">
 									<% category.forEach(function(item){ %>
 									<li><a href="#"><%= item.name %><i class="fas fa-chevron-right ml-auto"></i></a></li>
 

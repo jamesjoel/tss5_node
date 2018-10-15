@@ -3,6 +3,10 @@ var routes = express.Router();
 var product = require("../models/product");
 
 routes.get("/", function(req, res){
+	var io = res.set.io;
+	io.on("connection", function(socket){
+		
+	});
 
 	product.find({}, function(err, result){
 
