@@ -35,10 +35,7 @@
 		var b = "";
 		function getusername(p, n)
 		{
-			alert(p);
-			alert(n);
 			b = p;
-			// console.log(val.innerHTML);
 			a = n;
 			$(".label-success").html(n);
 		}
@@ -47,10 +44,27 @@
 			var obj = { to : b, sender : sendername, msg : $("#msg").val()};
 			console.log(obj);
 			socket.emit("chat", obj);
+			$("#show_msg").append("<p><b>Me</b> : "+$("#msg").val()+"</p>");
+			$("#msg").val("");
 		}
 
 		socket.on("chat", function(data){
-			$("#show_msg").html("<b>"+data.name+"</b> : "+data.msg);
+			$("#show_msg").append("<p><b>"+data.name+"</b> : "+data.msg+"</p>");
+		});
+
+
+		$(document).ready(function(){
+			$("#msg").keyup(function(){
+				socket.emit("typing", { name : sendername});
+			});
+		});
+
+
+		socket.on("typing1", function(data){
+			$(".text-muted").html(data.name+" is Typing");
+		});
+		socket.on("clearmsg", function(data){
+			$(".text-muted").html("");
 		});
 
 	</script>
@@ -75,6 +89,7 @@
 		</div>
 		<input id="msg" type="text" class="form-control" placeholder="Your Message">
 		<br />
+		<p class="text-muted"></p>
 		<br />
 		<button onclick="send()" class="btn btn-success">Send</button>
 	</div>

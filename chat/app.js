@@ -28,11 +28,15 @@ io.on("connection", function(socket){
 		var sendobj = { name : data.sender, msg : data.msg };
 
 		socket.broadcast.to(to).emit("chat", sendobj);
+		io.emit("clearmsg", {});
 	});
 	socket.on("disconnect", function(){
 		delete obj[socket.id];
 		io.emit("onlineUser", obj);
 		console.log(socket.id);
+	});
+	socket.on("typing", function(data){
+		socket.broadcast.emit("typing1", data);
 	});
 
 	// sending all client

@@ -51,31 +51,55 @@
     .back a {color: #444444; font-size: 13px;text-decoration: none;}
 
 </style>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#submit").click(function(){
+      var u = $("#username").val();
+      var p = $("#password").val();
+      $.ajax({
+          url : "/admin/login",
+          data : { username : u, password : p},
+          type : "post",
+          success : function(res){
+            // alert(res);
+            switch(res){
+              case "1" : $("#msg").html("Invalid Username and Password");
+                break;
+              case "2" : $("#msg").html("Invalid Password");
+                break;
+              case "3" : window.location.href="/admin/dashboard/";
+                break;
+            }
+          }
+      });
+    });
+  });
+</script>
 <div class="login-form">
 <div class="main-div">
     <div class="panel">
    <h2>Admin Login</h2>
    <p>Please enter your email and password</p>
    </div>
-    <form id="Login" action="/admin/login" method="post">
+    <!-- <form id="Login" action="/admin/login" method="post"> -->
 
         <div class="form-group">
 
 
-            <input type="text" class="form-control" id="inputEmail" value="admin" name="username" placeholder="Email Address">
+            <input id="username" type="text" class="form-control" id="inputEmail" value="admin" name="username" placeholder="Email Address">
 
         </div>
 
         <div class="form-group">
 
-            <input type="password" value="admin" class="form-control" id="inputPassword" name="password" placeholder="Password">
+            <input id="password" type="password" value="admin" class="form-control" id="inputPassword" name="password" placeholder="Password">
 
         </div>
         <div class="forgot">
 </div>
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="button" id="submit" class="btn btn-primary">Login</button>
 
-    </form>
-    <p class="text-danger"><%= msg %></p>
+    <!-- </form> -->
+    <p class="text-danger" id="msg"><%= msg %></p>
     </div>
 </div></div>

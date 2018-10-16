@@ -9,29 +9,60 @@ routes.get("/", function(req, res){
 });
 
 
+// routes.post("/", function(req, res){
+// 	// console.log(req.body);
+// 	var obj = req.body;
+// 	admin.find({ username : obj.username }, function(err, result){
+// 		if(result.length==0)
+// 		{
+// 			req.flash("msg", "This username and password not matched");
+// 			res.redirect("/admin/login");
+// 		}
+// 		else
+// 		{
+// 			if(result[0].password == obj.password)
+// 			{
+// 				req.session.is_admin_logged_in=true;
+// 				res.redirect("/admin/dashboard");
+// 			}
+// 			else
+// 			{
+// 				req.flash("msg", "This password not matched");
+// 				res.redirect("/admin/login");		
+// 			}
+// 		}
+// 	});
+
+// });
+
+// For AJAX Request
+
 routes.post("/", function(req, res){
-	// console.log(req.body);
+	console.log(req.body);
+	
 	var obj = req.body;
 	admin.find({ username : obj.username }, function(err, result){
 		if(result.length==0)
 		{
-			req.flash("msg", "This username and password not matched");
-			res.redirect("/admin/login");
+			res.send("1"); //This username and password not matched
 		}
 		else
 		{
 			if(result[0].password == obj.password)
 			{
 				req.session.is_admin_logged_in=true;
-				res.redirect("/admin/dashboard");
+				res.send("3");
 			}
 			else
 			{
-				req.flash("msg", "This password not matched");
-				res.redirect("/admin/login");		
+				res.send("2"); // wrong password
 			}
 		}
 	});
 
 });
+
+
+
+
 module.exports=routes;
