@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html ng-app="myApp">
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<script type="text/javascript" src="/js/bootstrap.js"></script>
+	<script type="text/javascript" src="/js/angular.js"></script>
+	<script type="text/javascript" src="/js/app.js"></script>
+</head>
+<body>
+	<div class="container" ng-controller="myCtrl">
+		<br />
+		<br />
+		<h2 ng-bind="f_name+' '+l_name"></h2>
+		<input type="text" ng-model="f_name" />
+		<br />
+		<br />
+		<input type="text" ng-model="l_name" />
+		<br />
+		<br />
+		<p ng-bind="gender"></p>
+		<Br />
+		<Br />
+		<input ng-model="gender" type="radio" name="gender" value="male"/>
+		<input ng-model="gender" type="radio" name="gender" value="female"/>
+	</div>
+</body>
+</html>

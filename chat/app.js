@@ -34,6 +34,7 @@ io.on("connection", function(socket){
 		delete obj[socket.id];
 		io.emit("onlineUser", obj);
 		console.log(socket.id);
+		console.log("hello");
 	});
 	socket.on("typing", function(data){
 		socket.broadcast.emit("typing1", data);
