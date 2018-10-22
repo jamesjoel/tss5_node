@@ -6,6 +6,7 @@ routes.use("/login", isLoggedIn, require("./login"));
 routes.use("/dashboard", adminBackdoor, require("./dashboard"));
 routes.use("/category", adminBackdoor, require("./category"));
 routes.use("/product", adminBackdoor, require("./product"));
+routes.use("/banners", adminBackdoor, require("./banners"));
 
 
 

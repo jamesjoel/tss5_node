@@ -30,6 +30,21 @@ routes.use("/admin", require("../controllers/admin/index"));
 
 function userBackdoor(req, res, next)
 {
+	var chat = res.set.chat;
+
+
+	chat.on("connection", function(socket){
+		var sid = socket.id;
+		var uid = req.session._id;
+		var full_name = req.session.full_name;
+		var arr = [sid, full_name];
+
+		res.set.onlineUser[uid]=arr;
+		chat.emit("onlineUser", res.set.onlineUser);
+
+	});
+
+
 	if(! req.session.is_user_logged_in)
 	{
 		res.redirect("/login");

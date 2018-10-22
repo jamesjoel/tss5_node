@@ -18,9 +18,20 @@ var upload = require('express-fileupload');
 
 var routes = require("./config/routes");
 var category = require("./models/category");
+var banners = require("./models/banners");
 
 
 app.set("view engine", "ejs");
+
+
+var onlineUser = {};
+var chat = io.of("/chat");
+
+
+
+
+
+
 
 app.use(express.static(__dirname+"/public"));
 app.use(bodyParser());
@@ -34,6 +45,10 @@ app.use(function(req, res, next){
 	res.locals.session = req.session;
 	res.locals.category=result;
 	res.set.io = io;
+	res.set.chat=chat;
+	res.set.onlineUser=onlineUser;
+	banners.find({}, function(err, result1){
+	res.locals.result1=result1;
 	// console.log("-------------------", req.cookies);
 	var total = 0;
 	if(req.cookies.pid)
@@ -44,7 +59,7 @@ app.use(function(req, res, next){
 	res.locals.total=total;
 
 	next();
-
+	});
 	});
 });
 

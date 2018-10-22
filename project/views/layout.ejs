@@ -4,7 +4,12 @@
 <title><%= title %></title>
 <script type="text/javascript" src="socket.io/socket.io.js"></script>
 <script type="text/javascript">
+
+
+
+
 	var socket = io();
+
 
 	socket.on("category", function(data){
 		console.log(data);
@@ -34,10 +39,76 @@
 <link rel="stylesheet" type="text/css" href="/styles/shop_styles.css">
 <link rel="stylesheet" type="text/css" href="/styles/shop_responsive.css">
 
+<style type="text/css">
+	#chat-box{
+		height: 250px;
+		width: 200px;
+		overflow-y: scroll;
+		background-color: #b2adad;
+		border:2px solid #000;
+		position: fixed;
+		z-index: 9999;
+		bottom: 0px;
+	}
+	#chat-box h3{
+		margin: 0;
+		padding: 0;
+		font-size: 17px;
+		text-align: center;
+		border-bottom: 1px solid #000;
+	}
+	#chat-box ul li{
+		display: block;
+	}
+	#chat-box ul li a{
+		display: block;
+		color: #000;
+		padding: 5px 20px;
+		border-bottom: 1px solid #FFF;
+	}
+	#chat-box ul li a:hover{
+		background-color: #000;
+		color: #FFF;
+	}
+	#message-boxes{
+		z-index: 9999;
+		position: fixed;
+		bottom: 0;
+		right: 0;
+		height: 200px;
+		width: 800px;
+		/*background-color: #b2adad;*/
+	}
+	.message-box{
+		float: right;
+		height: 200px;
+		width: 150px;
+		background-color: red;
+		margin: 0px 5px;
+	}
+</style>
+
 
 </head>
 
 <body>
+<% if(session.is_user_logged_in)
+{ %>
+<div id="chat-box">
+	<h3>Chat Box</h3>
+	<ul>
+		<li><a class="chat-user" href="#">Rohit</a></li>
+		<li><a class="chat-user" href="#">Rohit</a></li>
+		<li><a class="chat-user" href="#">Rohit</a></li>
+		<li><a class="chat-user" href="#">Rohit</a></li>
+	</ul>
+</div>
+<% } %>
+<div id="message-boxes">
+</div>
+
+
+
 
 <div class="super_container">
 	
@@ -505,14 +576,15 @@
 
 						<div class="owl-carousel owl-theme brands_slider">
 							
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="/images/brands_1.jpg" alt=""></div></div>
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="/images/brands_2.jpg" alt=""></div></div>
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="/images/brands_3.jpg" alt=""></div></div>
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="/images/brands_4.jpg" alt=""></div></div>
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="/images/brands_5.jpg" alt=""></div></div>
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="/images/brands_6.jpg" alt=""></div></div>
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="/images/brands_7.jpg" alt=""></div></div>
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="/images/brands_8.jpg" alt=""></div></div>
+							<% result1.forEach(function(item){ %>
+								<div class="owl-item">
+									<div class="brands_item d-flex flex-column justify-content-center">
+										<img src="/banner_image/<%= item.name %>" height="40" width="40" alt="">
+									</div>
+								</div>
+
+							<% }) %>
+							
 
 						</div>
 						
@@ -675,6 +747,25 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			$("#myheader").css({"background-color": color});
 			$("#mycolor").val(color);
 		});
+	});
+
+		$(document).ready(function(){
+			$(".chat-user").click(function(){
+				$("#message-boxes").append("<div class='message-box'></div>");
+			});
+		});
+
+
+	var chat = io("/chat");
+
+	chat.on("onlineUser", function(obj){
+		var x = "";
+
+		for(var key in obj){
+			var y = obj[key];
+			x += "<li><a class='chat-user' href='#'>"+y[1]+"</a></li>";
+		}
+		$("#chat-box ul").html(x);
 	});
 </script>
 
