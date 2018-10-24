@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html ng-app="myApp">
 <head>
 	<title></title>
@@ -8,23 +7,71 @@
 	<script type="text/javascript" src="/js/bootstrap.js"></script>
 	<script type="text/javascript" src="/js/angular.js"></script>
 	<script type="text/javascript" src="/js/app.js"></script>
+	
 </head>
-<body>
-	<div class="container" ng-controller="myCtrl">
-		<br />
-		<br />
-		<h2 ng-bind="f_name+' '+l_name"></h2>
-		<input type="text" ng-model="f_name" />
-		<br />
-		<br />
-		<input type="text" ng-model="l_name" />
-		<br />
-		<br />
-		<p ng-bind="gender"></p>
+<body  ng-controller="myCtrl">
+	<div class="container">
 		<Br />
-		<Br />
-		<input ng-model="gender" type="radio" name="gender" value="male"/>
-		<input ng-model="gender" type="radio" name="gender" value="female"/>
+		
+		
+		
+		<div class="jumbotron">
+			<h2>The Stepping Stone</h2>
+			<p>Add New Student <button data-toggle="modal" data-target="#addModal" class="btn btn-primary">Add</button></p>
+		</div>
 	</div>
+	<div class="container">
+		<table class="table table-bordered table-striped table-hover">
+			<tr>
+				<th>S.No.</th>
+				<th>Name</th>
+				<th>Fee</th>
+				<th>City</th>
+				<th>Edit</th>
+				<th>Delete</th>
+			</tr>
+			<tr ng-repeat="x in data">
+				<td ng-bind="$index+1"></td>
+				<td ng-bind="x.name"></td>
+				<td ng-bind="x.fee"></td>
+				<td ng-bind="x.city"></td>
+				<td><button class="btn btn-info">Edit</button></td>
+				<td><button class="btn btn-danger">Delete</button></td>
+			</tr>
+		</table>
+	</div>
+<div class="modal fade" id="addModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h2>Add New Student Here</h2>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<label>Full Name</label>
+					<input ng-model="newData.name" type="text" class="form-control">
+				</div>
+				<div class="form-group">
+					<label>Fee</label>
+					<input ng-model="newData.fee" type="text" class="form-control">
+				</div>
+				<div class="form-group">
+					<label>City</label>
+					<select ng-model="newData.city" class="form-control">
+						<option>Select</option>
+						<option>Indore</option>
+						<option>Ujjain</option>
+						<option>Bhopal</option>
+					</select>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-success" data-dismiss="modal" ng-click="save()">Save</button>
+				<button data-dismiss="modal" class="btn btn-danger">Close</button>
+
+			</div>
+		</div>
+	</div>
+</div>
 </body>
 </html>
