@@ -17,7 +17,7 @@
 		
 		<div class="jumbotron">
 			<h2>The Stepping Stone</h2>
-			<p>Add New Student <button data-toggle="modal" data-target="#addModal" class="btn btn-primary">Add</button></p>
+			<p>Add New Student <button data-toggle="modal" data-target="#addModal" class="btn btn-primary" ng-click="newData={}">Add</button></p>
 		</div>
 	</div>
 	<div class="container">
@@ -35,7 +35,7 @@
 				<td ng-bind="x.name"></td>
 				<td ng-bind="x.fee"></td>
 				<td ng-bind="x.city"></td>
-				<td><button class="btn btn-info">Edit</button></td>
+				<td><button  data-toggle="modal" data-target="#addModal" ng-click="edit(x)" class="btn btn-info">Edit</button></td>
 				<td><button data-toggle="modal" data-target="#delModal" class="btn btn-danger" ng-click="askDelete(x)">Delete</button></td>
 			</tr>
 		</table>
@@ -44,7 +44,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h2>Add New Student Here</h2>
+				<h2>{{ newData._id ? "Edit" : "Add New" }} Student Here</h2>
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
@@ -66,10 +66,11 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button class="btn btn-success" data-dismiss="modal" ng-click="save()">Save</button>
+				<button class="btn btn-success" data-dismiss="modal" ng-click="save()">{{ newData._id ? "Update" : "Save"}}</button>
 				<button data-dismiss="modal" class="btn btn-danger">Close</button>
 
 			</div>
+			
 		</div>
 	</div>
 </div>
@@ -85,6 +86,23 @@
 			<div class="modal-footer">
 				<button class="btn btn-danger" data-dismiss="modal" ng-click="delete()">Delete</button>
 				<button class="btn btn-default"data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="modal fade" id="msgModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h2>Message !</h2>
+			</div>
+			<div class="modal-body">
+				<p>{{ msg }}</p>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-danger" data-dismiss="modal">Close</button>
 			</div>
 		</div>
 	</div>

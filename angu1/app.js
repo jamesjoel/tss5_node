@@ -37,9 +37,27 @@ app.post("/deletestudent", function(req, res){
 		var db = client.db("tss5");
 		db.collection("student").remove({ _id : mongo.ObjectId(id) },function(err, result){
 			// console.log(result);
+			res.send(result);
 		});
 	});
 });
+
+
+app.post("/updatestudent", function(req, res){
+	var id = req.body._id;
+	delete req.body._id;
+	MongoClient.connect("mongodb://localhost:27017", function(err, client){
+		var db = client.db("tss5");
+		db.collection("student").update({ _id : mongo.ObjectId(id) },{ $set : req.body },function(err, result){
+			// console.log(result);
+			res.send(result);
+		});
+	});
+});
+
+
+
+
 
 
 app.listen(3000, function(){
