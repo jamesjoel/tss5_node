@@ -1,7 +1,28 @@
 var app = angular.module("myApp", []);
+
+app.filter("disFilter", function(){
+	return function(x, y){
+		if(y<=25)
+		{
+			var z = x*10/100;
+			return x-z;
+		}
+		else
+		{
+			var z = x*5/100;
+			return x-z;
+
+		}
+	}
+
+});
+
+
 app.controller("myCtrl", function($scope, $http){
 	$scope.newData={};
 	$scope.msg="";
+	$scope.orderby = false;
+	$scope.colName = 'fee';
 	
 
 	$scope.data=[];
@@ -74,5 +95,9 @@ app.controller("myCtrl", function($scope, $http){
 		// $scope.newData=obj;
 		$scope.selectedObj=obj;
 		angular.copy(obj, $scope.newData);
+	}
+	$scope.order=function(x){
+		$scope.colName=x;
+		$scope.orderby = ! $scope.orderby;
 	}
 });
