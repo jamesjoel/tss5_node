@@ -1,4 +1,27 @@
 var app = angular.module("myApp", []);
+app.directive("myBtn", function(){
+	return {
+		template : "<button class='btn btn-success'>DEMO</button>"
+	}
+});
+app.directive("myPara", function(){
+	return{
+		template : "<p>hello world</p>"
+	}
+});
+
+app.service("myServ", function($http){
+	this.demo=function(x){
+		alert(x);
+	}
+	this.test=function(){
+
+	}
+
+
+
+});
+
 
 app.filter("disFilter", function(){
 	return function(x, y){
@@ -18,7 +41,11 @@ app.filter("disFilter", function(){
 });
 
 
-app.controller("myCtrl", function($scope, $http){
+app.controller("myCtrl", function($scope, $http, myServ){
+
+	
+
+
 	$scope.newData={};
 	$scope.msg="";
 	$scope.orderby = false;
@@ -36,6 +63,7 @@ app.controller("myCtrl", function($scope, $http){
 	});
 
 	$scope.save=function(){
+		myServ.demo("hello");
 		if($scope.newData._id)
 		{
 			$http({

@@ -4,7 +4,9 @@ var MongoClient = require("mongodb").MongoClient;
 var bodyParser = require("body-parser");
 var mongo = require("mongodb");
 
+// app.set("views", "views");
 app.use(express.static(__dirname+"/public"));
+
 app.use(bodyParser());
 
 app.get("/", function(req, res){
@@ -19,6 +21,17 @@ app.get("/getdata", function(req, res){
 		});
 	});
 });
+app.get("/demo", function(req, res){
+	res.sendFile(__dirname+"/views/demo.html");
+});
+
+app.post("/test", function(req, res){
+	console.log(req.body);
+	res.send({ city : "ujjain"});
+});
+
+
+
 
 app.post("/getdata", function(req, res){
 	MongoClient.connect("mongodb://localhost:27017", function(err, client){
